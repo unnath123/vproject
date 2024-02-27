@@ -1,0 +1,37 @@
+<!-- dollarId: issue.chart,v 1.0 2024/02/27 -->
+<tal:doc metal:use-macro="templates/page/macros/icing" define="edit_ok context/is_edit_ok">
+    <title metal:fill-slot="head_title">
+        <tal:if condition="context/id" i18n:translate="">
+            User <tal:x content="context/id" i18n:name="id" />: <tal:x content="context/username" i18n:name="title" /> - <tal:x content="config/TRACKER_NAME" i18n:name="tracker" />
+        </tal:if>
+        <tal:if condition="not:context/id" i18n:translate="">
+            New User - <span tal:replace="config/TRACKER_NAME" i18n:name="tracker" />
+        </tal:if>
+    </title>
+    <metal:slot fill-slot="more-javascript">
+        <script metal:use-macro="templates/page/macros/user_utils"></script>
+        <script type="text/javascript" src="@@file/help_controls.js"></script>
+    </metal:slot>
+    <tal:block metal:fill-slot="body_title" define="edit_ok context/is_edit_ok">
+        <span tal:condition="python: not (context.id or edit_ok)" tal:omit-tag="python:1" i18n:translate="">New User</span>
+        <span tal:condition="python: not context.id and edit_ok" tal:omit-tag="python:1" i18n:translate="">New User Editing</span>
+        <span tal:condition="python: context.id and not edit_ok" tal:omit-tag="python:1" i18n:translate="">User<tal:x replace="context/id" i18n:name="id" /></span>
+        <span tal:condition="python: context.id and edit_ok" tal:omit-tag="python:1" i18n:translate="">User<tal:x replace="context/id" i18n:name="id" /> Editing</span>
+    </tal:block>
+
+    <td class="content" metal:fill-slot="content">
+        <div class="svg-container">
+            <!-- Replace the below placeholder SVG with your actual SVG content -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px">
+                <!-- Your SVG Path here -->
+            </svg>
+
+            <!-- Add more SVG images as needed -->
+
+            <!-- SVG Image 1 -->
+            <svg fill="#000000" class="cp-placeholder" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+            <!-- SVG Image 2 -->
+            <svg fill="#000000" class="cp-placeholder" height="24" width="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+    </td>
+</tal:doc>
